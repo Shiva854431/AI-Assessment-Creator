@@ -70,6 +70,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 
     console.log('Creating assignment with subject:', value.subject);
+    console.log('Question types received:', value.questionTypes);
 
     // Generate question paper using AI
     const questionPaper = await generateQuestionPaper({
