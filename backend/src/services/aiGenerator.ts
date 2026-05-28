@@ -172,6 +172,10 @@ function generateMockQuestionPaper(params: {
       'true-false': 'true-false',
       'short answer': 'short-answer',
       'essay': 'essay',
+      'case study': 'case-study',
+      'case-study': 'case-study',
+      'problem solving': 'problem-solving',
+      'problem-solving': 'problem-solving',
     };
     
     const normalizedType = questionType ? typeMap[questionType.toLowerCase()] || 'short-answer' : 'short-answer';
@@ -201,7 +205,7 @@ function generateMockQuestionPaper(params: {
     
     if (normalizedType === 'fill-in-the-blanks') {
       // Generate fill-in-the-blanks question
-      const blankAnswer = generateBlankAnswer(params.subject);
+      const blankAnswer = generateBlankAnswer(params.subject, question);
       const questionWithBlank = question.replace(/^(.+?)(\s+is\s+|\s+are\s+|\s+was\s+|\s+were\s+|\s+has\s+|\s+have\s+|\s+will\s+|\s+can\s+)(.+)$/, '$1$2_____$3');
       return {
         id: `q-${index + 1}`,
@@ -215,7 +219,7 @@ function generateMockQuestionPaper(params: {
     
     if (normalizedType === 'matching') {
       // Generate matching question
-      const pairs = generateMatchingPairs(params.subject);
+      const pairs = generateMatchingPairs(params.subject, question);
       return {
         id: `q-${index + 1}`,
         text: 'Match the following items:',
@@ -239,6 +243,30 @@ function generateMockQuestionPaper(params: {
       };
     }
     
+    if (normalizedType === 'case-study') {
+      // Generate case study question
+      const caseStudyText = generateCaseStudy(params.subject, question);
+      return {
+        id: `q-${index + 1}`,
+        text: caseStudyText,
+        difficulty: difficulty as 'easy' | 'medium' | 'hard',
+        marks: params.marksPerQuestion,
+        type: 'essay',
+      };
+    }
+    
+    if (normalizedType === 'problem-solving') {
+      // Generate problem solving question
+      const problemText = generateProblemSolving(params.subject, question);
+      return {
+        id: `q-${index + 1}`,
+        text: problemText,
+        difficulty: difficulty as 'easy' | 'medium' | 'hard',
+        marks: params.marksPerQuestion,
+        type: 'short-answer',
+      };
+    }
+    
     return {
       id: `q-${index + 1}`,
       text: question,
@@ -248,18 +276,102 @@ function generateMockQuestionPaper(params: {
     };
   };
 
-  const generateBlankAnswer = (subject: string): string => {
+  const generateCaseStudy = (subject: string, question?: string): string => {
     const lowerSubject = subject.toLowerCase();
+    
     if (lowerSubject.includes('math')) {
-      return 'x';
+      return `Case Study: A company needs to optimize its production process. The production function is given by P(x) = 2x² + 5x + 10, where x is the number of units produced. ${question || 'Analyze the production function and determine the optimal production level.'}`;
     } else if (lowerSubject.includes('physics')) {
-      return 'force';
+      return `Case Study: A car manufacturer is designing a new safety system. The car must decelerate from 60 km/h to 0 in 3 seconds. ${question || 'Calculate the required deceleration force and analyze the safety implications.'}`;
     } else if (lowerSubject.includes('chemistry')) {
-      return 'molecule';
+      return `Case Study: A pharmaceutical company is developing a new drug. The reaction rate depends on temperature and concentration. ${question || 'Analyze the reaction kinetics and determine optimal conditions.'}`;
     } else if (lowerSubject.includes('biology')) {
-      return 'cell';
+      return `Case Study: A patient presents with unusual symptoms. Medical tests reveal elevated enzyme levels. ${question || 'Analyze the potential causes and recommend diagnostic procedures.'}`;
     } else if (lowerSubject.includes('computer')) {
-      return 'algorithm';
+      return `Case Study: A tech startup is building a scalable web application. They need to handle millions of users. ${question || 'Design the system architecture and analyze potential bottlenecks.'}`;
+    } else {
+      return `Case Study: ${question || 'Analyze the given scenario and provide recommendations based on the subject matter.'}`;
+    }
+  };
+
+  const generateProblemSolving = (subject: string, question?: string): string => {
+    const lowerSubject = subject.toLowerCase();
+    
+    if (lowerSubject.includes('math')) {
+      return `Problem: Solve the following optimization problem. A farmer has 100 meters of fencing to enclose a rectangular area. ${question || 'Find the dimensions that maximize the area.'}`;
+    } else if (lowerSubject.includes('physics')) {
+      return `Problem: A ball is thrown upward with an initial velocity of 20 m/s. ${question || 'Calculate the maximum height reached and the time taken to reach it.'}`;
+    } else if (lowerSubject.includes('chemistry')) {
+      return `Problem: In a chemical reaction, 2 moles of A react with 3 moles of B to produce C. ${question || 'Calculate the limiting reactant and the theoretical yield.'}`;
+    } else if (lowerSubject.includes('biology')) {
+      return `Problem: In a population study, the growth rate follows an exponential model. ${question || 'Calculate the population after 5 years given initial conditions.'}`;
+    } else if (lowerSubject.includes('computer')) {
+      return `Problem: Design an algorithm to find the shortest path in a weighted graph. ${question || 'Explain your approach and analyze its time complexity.'}`;
+    } else {
+      return `Problem: ${question || 'Solve the given problem using appropriate methods and show your work.'}`;
+    }
+  };
+
+  const generateBlankAnswer = (subject: string, question?: string): string => {
+    const lowerSubject = subject.toLowerCase();
+    
+    // Generate answer based on question content
+    if (question) {
+      if (question.includes('equation') || question.includes('solve') || question.includes('x')) {
+        return '5';
+      }
+      if (question.includes('derivative') || question.includes('rate')) {
+        return '6x + 4';
+      }
+      if (question.includes('integral') || question.includes('area')) {
+        return 'x³ + 2x²';
+      }
+      if (question.includes('force') || question.includes('F = ma')) {
+        return '15 N';
+      }
+      if (question.includes('energy') || question.includes('kinetic')) {
+        return '100 J';
+      }
+      if (question.includes('velocity') || question.includes('speed')) {
+        return '10 m/s';
+      }
+      if (question.includes('molar mass') || question.includes('H₂SO₄')) {
+        return '98 g/mol';
+      }
+      if (question.includes('pH') || question.includes('acid')) {
+        return '5';
+      }
+      if (question.includes('cell') || question.includes('powerhouse')) {
+        return 'mitochondria';
+      }
+      if (question.includes('DNA') || question.includes('genetic')) {
+        return 'deoxyribonucleic acid';
+      }
+      if (question.includes('photosynthesis') || question.includes('chloroplast')) {
+        return 'chloroplast';
+      }
+      if (question.includes('algorithm') || question.includes('complexity')) {
+        return 'O(n)';
+      }
+      if (question.includes('database') || question.includes('transaction')) {
+        return 'ACID';
+      }
+      if (question.includes('CPU') || question.includes('processor')) {
+        return 'Central Processing Unit';
+      }
+    }
+    
+    // Fallback to subject-specific answers
+    if (lowerSubject.includes('math')) {
+      return '5';
+    } else if (lowerSubject.includes('physics')) {
+      return '15 N';
+    } else if (lowerSubject.includes('chemistry')) {
+      return '98 g/mol';
+    } else if (lowerSubject.includes('biology')) {
+      return 'mitochondria';
+    } else if (lowerSubject.includes('computer')) {
+      return 'O(n)';
     } else if (lowerSubject.includes('current')) {
       return 'climate change';
     } else {
@@ -267,8 +379,54 @@ function generateMockQuestionPaper(params: {
     }
   };
 
-  const generateMatchingPairs = (subject: string): { left: string; right: string }[] => {
+  const generateMatchingPairs = (subject: string, question?: string): { left: string; right: string }[] => {
     const lowerSubject = subject.toLowerCase();
+    
+    // Generate pairs based on question content
+    if (question) {
+      if (question.includes('derivative') || question.includes('integral') || question.includes('math')) {
+        return [
+          { left: 'Derivative', right: 'Rate of change' },
+          { left: 'Integral', right: 'Area under curve' },
+          { left: 'Pi', right: '3.14159' },
+          { left: 'Zero', right: 'Additive identity' },
+        ];
+      }
+      if (question.includes('force') || question.includes('energy') || question.includes('physics')) {
+        return [
+          { left: 'Force', right: 'Mass × Acceleration' },
+          { left: 'Energy', right: 'Joule' },
+          { left: 'Velocity', right: 'Speed with direction' },
+          { left: 'Gravity', right: '9.8 m/s²' },
+        ];
+      }
+      if (question.includes('molecule') || question.includes('chemical') || question.includes('chemistry')) {
+        return [
+          { left: 'H2O', right: 'Water' },
+          { left: 'NaCl', right: 'Salt' },
+          { left: 'CO2', right: 'Carbon dioxide' },
+          { left: 'pH', right: 'Acidity measure' },
+        ];
+      }
+      if (question.includes('cell') || question.includes('organism') || question.includes('biology')) {
+        return [
+          { left: 'Mitochondria', right: 'Powerhouse of cell' },
+          { left: 'DNA', right: 'Genetic material' },
+          { left: 'Photosynthesis', right: 'Food making' },
+          { left: 'Nucleus', right: 'Control center' },
+        ];
+      }
+      if (question.includes('algorithm') || question.includes('programming') || question.includes('computer')) {
+        return [
+          { left: 'CPU', right: 'Central Processing Unit' },
+          { left: 'RAM', right: 'Random Access Memory' },
+          { left: 'Algorithm', right: 'Step-by-step procedure' },
+          { left: 'Bug', right: 'Software error' },
+        ];
+      }
+    }
+    
+    // Fallback to subject-specific pairs
     if (lowerSubject.includes('math')) {
       return [
         { left: 'Derivative', right: 'Rate of change' },
