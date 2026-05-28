@@ -187,7 +187,7 @@ function generateMockQuestionPaper(params: {
     
     if (normalizedType === 'mcq') {
       // Generate MCQ with options
-      const options = generateMCQOptions(params.subject);
+      const options = generateMCQOptions(params.subject, question);
       return {
         id: `q-${index + 1}`,
         text: question,
@@ -321,12 +321,50 @@ function generateMockQuestionPaper(params: {
     }
   };
 
-  const generateMCQOptions = (subject: string): string[] => {
+  const generateMCQOptions = (subject: string, question?: string): string[] => {
     const lowerSubject = subject.toLowerCase();
+    
+    // Generate options based on question content
+    if (question) {
+      if (question.includes('equation') || question.includes('solve') || question.includes('x')) {
+        const answers = ['5', '10', '15', '20'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('derivative') || question.includes('integral')) {
+        const answers = ['3x² + 4x', '6x + 4', 'x³ + 2x²', '2x + 1'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('area') || question.includes('circle')) {
+        const answers = ['154 cm²', '49π cm²', '38.5 cm²', '196 cm²'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('force') || question.includes('acceleration')) {
+        const answers = ['15 N', '30 N', '45 N', '60 N'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('energy') || question.includes('kinetic')) {
+        const answers = ['50 J', '100 J', '150 J', '200 J'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('molar mass') || question.includes('moles')) {
+        const answers = ['18 g/mol', '36 g/mol', '54 g/mol', '98 g/mol'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('cell') || question.includes('mitochondria')) {
+        const answers = ['Mitochondria', 'Nucleus', 'Ribosome', 'Golgi apparatus'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+      if (question.includes('complexity') || question.includes('algorithm')) {
+        const answers = ['O(n)', 'O(n²)', 'O(log n)', 'O(1)'];
+        return answers.sort(() => Math.random() - 0.5);
+      }
+    }
+    
+    // Fallback to subject-specific options
     if (lowerSubject.includes('math')) {
-      return ['10', '15', '20', '25'];
+      return ['5', '10', '15', '20'];
     } else if (lowerSubject.includes('physics')) {
-      return ['50 N', '100 N', '150 N', '200 N'];
+      return ['15 N', '30 N', '45 N', '60 N'];
     } else if (lowerSubject.includes('chemistry')) {
       return ['18 g/mol', '36 g/mol', '54 g/mol', '98 g/mol'];
     } else if (lowerSubject.includes('biology')) {
