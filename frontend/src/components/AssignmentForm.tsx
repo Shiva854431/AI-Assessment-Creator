@@ -67,9 +67,14 @@ export default function AssignmentForm() {
     console.log('Form validation passed, creating assignment...');
     try {
       await createAssignment({
-        ...formData,
-        questionTypes: formData.questionType ? [formData.questionType] : [],
+        title: formData.title,
+        subject: formData.subject,
         dueDate: new Date(formData.dueDate).toISOString(),
+        questionTypes: formData.questionType ? [formData.questionType] : [],
+        numberOfQuestions: formData.numberOfQuestions,
+        marksPerQuestion: formData.marksPerQuestion,
+        instructions: formData.instructions,
+        fileUrl: formData.fileUrl,
       });
 
       // Reset form
