@@ -1,0 +1,36 @@
+{
+  "name": "ai-assessment-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "rm -rf node_modules",
+    "dev": "tsx watch src/server.ts",
+    "build": "rm -rf dist && tsc",
+    "start": "node dist/server.js",
+    "worker": "tsx watch src/worker.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@huggingface/inference": "^4.13.18",
+    "axios": "^1.6.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "groq-sdk": "^1.2.1",
+    "joi": "^17.12.0",
+    "mongoose": "^8.1.1",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.28.0",
+    "pdf-parse": "^1.1.1",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.11",
+    "@types/node": "^20.11.19",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}
