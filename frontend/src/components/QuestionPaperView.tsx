@@ -109,6 +109,51 @@ export default function QuestionPaperView({ questionPaper }: { questionPaper: Qu
                         <p className="text-gray-900 font-medium text-lg leading-relaxed">
                           {question.text}
                         </p>
+                        
+                        {/* MCQ Options */}
+                        {question.type === 'mcq' && question.options && (
+                          <div className="mt-4 space-y-2">
+                            {question.options.map((option, optIndex) => (
+                              <div key={optIndex} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                                  {String.fromCharCode(65 + optIndex)}
+                                </div>
+                                <span className="text-gray-700">{option}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {/* Matching Pairs */}
+                        {question.type === 'matching' && question.pairs && (
+                          <div className="mt-4 grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <p className="text-sm font-semibold text-gray-500 mb-2">Column A</p>
+                              {question.pairs.map((pair, pairIndex) => (
+                                <div key={pairIndex} className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                                  <span className="text-gray-700">{pair.left}</span>
+                                </div>
+                              ))}
+                            </div>
+                            <div className="space-y-2">
+                              <p className="text-sm font-semibold text-gray-500 mb-2">Column B</p>
+                              {question.pairs.map((pair, pairIndex) => (
+                                <div key={pairIndex} className="p-3 bg-purple-50 rounded-lg border border-purple-200">
+                                  <span className="text-gray-700">{pair.right}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Fill in the Blanks Answer */}
+                        {question.type === 'fill-in-the-blanks' && question.correctAnswer && (
+                          <div className="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <p className="text-sm text-gray-600">
+                              <span className="font-semibold">Answer:</span> {question.correctAnswer}
+                            </p>
+                          </div>
+                        )}
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <span

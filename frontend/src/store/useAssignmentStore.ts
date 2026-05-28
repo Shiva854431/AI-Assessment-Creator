@@ -6,6 +6,10 @@ export interface Question {
   text: string;
   difficulty: 'easy' | 'medium' | 'hard';
   marks: number;
+  type?: 'mcq' | 'short-answer' | 'essay' | 'fill-in-the-blanks' | 'matching';
+  options?: string[];
+  correctAnswer?: string;
+  pairs?: { left: string; right: string }[];
 }
 
 export interface Section {
