@@ -47,88 +47,88 @@ function generateMockQuestionPaper(params: {
   // Subject-specific question templates
   const subjectTemplates: Record<string, string[]> = {
     'mathematics': [
-      'Solve the following equation: 2x + 5 = 15',
-      'Find the derivative of f(x) = x³ + 2x² - 5x + 1',
-      'Calculate the area of a circle with radius 7 cm',
-      'Simplify the expression: (3x²)(2x⁻³)',
-      'Find the value of x if log₂(x) = 5',
-      'Solve the system of equations: x + y = 10, 2x - y = 5',
-      'Calculate the probability of getting heads when flipping a coin twice',
-      'Find the limit of (x² - 4)/(x - 2) as x approaches 2',
-      'Determine the integral of ∫(3x² + 2x)dx',
-      'Solve for x in the quadratic equation: x² - 5x + 6 = 0',
+      'A store offers a 20% discount on a $150 item. What is the final price after discount?',
+      'If you save $200 per month, how much will you have in 2 years?',
+      'A car travels 60 km in 1.5 hours. What is its average speed?',
+      'Your phone bill is $45 per month. How much do you pay in a year?',
+      'A recipe serves 4 people and requires 2 cups of flour. How much flour for 10 people?',
+      'You earn $15 per hour and work 35 hours per week. What is your weekly income?',
+      'A pizza is cut into 8 slices. If 3 people eat 2 slices each, how many slices remain?',
+      'The temperature increased from 20°C to 35°C. What was the percentage increase?',
+      'A rectangular garden is 12m by 8m. What is the area in square meters?',
+      'If a product costs $80 and tax is 8%, what is the total cost?',
     ],
     'physics': [
-      'Calculate the force required to accelerate a 5 kg mass at 3 m/s²',
-      'Determine the kinetic energy of a 2 kg object moving at 10 m/s',
-      'Find the wavelength of light with frequency 6 × 10¹⁴ Hz',
-      'Calculate the electric field strength at a distance of 2 m from a 5 C charge',
-      'Determine the period of a pendulum with length 1 m',
-      'Calculate the work done to move a 10 kg object 5 m vertically',
-      'Find the resistance of a wire with resistivity 2 × 10⁻⁸ Ωm, length 10 m, and cross-sectional area 2 mm²',
-      'Determine the momentum of a 3 kg object moving at 8 m/s',
-      'Calculate the gravitational force between two 10 kg masses 5 m apart',
-      'Find the power consumed by a 100 W bulb operating for 2 hours',
+      'A 60 kg person jumps off a 2m high wall. What is their velocity just before hitting the ground?',
+      'How much energy does a 100W bulb consume if left on for 8 hours?',
+      'A car accelerates from 0 to 60 km/h in 6 seconds. What is its acceleration?',
+      'If you drop a ball from 10m height, how long does it take to reach the ground?',
+      'A 2kg object is pushed with 10N force. What is its acceleration?',
+      'How much force is needed to lift a 50kg box?',
+      'A 1500W heater runs for 3 hours. How much energy does it use in kWh?',
+      'What is the speed of sound if it travels 340m in 1 second?',
+      'A 5kg mass falls from 20m. What is its kinetic energy just before impact?',
+      'How much work is done to push a 30kg box 10m across a floor with 50N force?',
     ],
     'chemistry': [
-      'Balance the chemical equation: H₂ + O₂ → H₂O',
-      'Calculate the molar mass of H₂SO₄',
-      'Determine the pH of a solution with [H⁺] = 1 × 10⁻⁵ M',
-      'Find the number of moles in 50 g of NaCl',
-      'Calculate the concentration of a solution with 10 g solute in 100 mL solvent',
-      'Determine the oxidation state of sulfur in H₂SO₄',
-      'Calculate the enthalpy change for the reaction: 2H₂ + O₂ → 2H₂O',
-      'Find the empirical formula of a compound with 40% C, 6.7% H, and 53.3% O',
-      'Determine the limiting reactant when 2 mol H₂ reacts with 1 mol O₂',
-      'Calculate the volume of CO₂ produced at STP from 10 g of CaCO₃',
+      'If you mix 50g of salt in 200mL of water, what is the concentration in g/mL?',
+      'A solution has pH 3. Is it acidic or basic?',
+      'How many grams are in 2 moles of water (H₂O)?',
+      'If you burn 10g of methane, how much CO₂ is produced?',
+      'What happens when you mix baking soda and vinegar?',
+      'How much water is produced when 4g of hydrogen reacts with oxygen?',
+      'If a solution has 0.1M HCl, what is its pH?',
+      'How many atoms are in 12g of carbon?',
+      'What is the molar mass of table salt (NaCl)?',
+      'If you dilute 100mL of 1M solution to 1L, what is the new concentration?',
     ],
     'biology': [
-      'Describe the structure and function of mitochondria',
-      'Explain the process of photosynthesis in plants',
-      'What are the stages of cell division in mitosis?',
-      'Describe the structure of DNA and its role in genetics',
-      'Explain the difference between prokaryotic and eukaryotic cells',
-      'What is the function of enzymes in biological reactions?',
-      'Describe the process of protein synthesis',
-      'Explain the concept of natural selection',
-      'What are the main components of a cell membrane?',
-      'Describe the human circulatory system',
+      'Why do we feel hungry after exercising?',
+      'How does vaccination protect us from diseases?',
+      'Why do leaves change color in autumn?',
+      'How does our body fight infections?',
+      'Why do we need to drink water daily?',
+      'How do plants make food from sunlight?',
+      'Why do we get fever when sick?',
+      'How does digestion break down food into energy?',
+      'Why do muscles get sore after exercise?',
+      'How does blood carry oxygen throughout the body?',
     ],
     'computer science': [
-      'Write a function to find the factorial of a number',
-      'Explain the difference between BFS and DFS algorithms',
-      'What is the time complexity of binary search?',
-      'Describe the concept of object-oriented programming',
-      'Explain the difference between TCP and UDP protocols',
-      'What is a database transaction?',
-      'Describe the structure of a binary search tree',
-      'Explain the concept of recursion with an example',
-      'What is the difference between HTTP and HTTPS?',
-      'Describe the process of software development lifecycle',
+      'How does a password protect your online account?',
+      'Why do websites use cookies?',
+      'How does a search engine find information?',
+      'What happens when you click a link on a webpage?',
+      'How does email travel from sender to receiver?',
+      'Why do we need to update software regularly?',
+      'How does a computer virus spread?',
+      'What is the difference between HTTP and HTTPS in web browsing?',
+      'How does cloud storage keep your files safe?',
+      'Why do some websites load faster than others?',
     ],
     'history': [
-      'Describe the causes and effects of the Industrial Revolution',
-      'What were the main events of World War II?',
-      'Explain the significance of the French Revolution',
-      'Describe the impact of colonialism on modern nations',
-      'What were the key features of the Renaissance period?',
-      'Explain the causes of the American Civil War',
-      'Describe the role of trade routes in ancient civilizations',
-      'What was the impact of the printing press on society?',
-      'Explain the concept of feudalism in medieval Europe',
-      'Describe the major achievements of ancient Greek civilization',
+      'How did the invention of the printing press change daily life?',
+      'Why did people migrate from rural areas to cities during the Industrial Revolution?',
+      'How did World War II affect ordinary families?',
+      'What was daily life like before electricity was invented?',
+      'How did the invention of the telephone change communication?',
+      'Why did ancient civilizations build pyramids and monuments?',
+      'How did the discovery of America change trade and daily life?',
+      'What was the impact of the railroad on travel and commerce?',
+      'How did the internet revolution change how we access information?',
+      'Why did people fight for voting rights throughout history?',
     ],
     'current affairs': [
-      'What are the major geopolitical challenges facing the world today?',
-      'Discuss the impact of climate change on global economies',
-      'Explain the significance of recent technological advancements',
-      'What are the key issues in international trade relations?',
-      'Describe the current state of global healthcare systems',
-      'What are the major economic trends in emerging markets?',
-      'Discuss the role of social media in modern politics',
-      'Explain the impact of artificial intelligence on employment',
-      'What are the key environmental concerns of the 21st century?',
-      'Describe the current state of space exploration efforts',
+      'How does climate change affect our daily weather patterns?',
+      'Why are electric vehicles becoming more popular?',
+      'How does social media influence public opinion?',
+      'What are the benefits and risks of remote work?',
+      'How does inflation affect the cost of living?',
+      'Why are renewable energy sources important for the future?',
+      'How does online shopping change traditional retail?',
+      'What are the impacts of artificial intelligence on everyday jobs?',
+      'How do government policies affect healthcare access?',
+      'Why is cybersecurity important for individuals and businesses?',
     ],
   };
   
@@ -142,16 +142,16 @@ function generateMockQuestionPaper(params: {
     }
     // Generic templates if no specific match
     return [
-      `Explain the fundamental concepts of ${subject}`,
-      `What are the main applications of ${subject} in real-world scenarios?`,
-      `Describe the key principles and theories in ${subject}`,
-      `How does ${subject} relate to other disciplines?`,
-      `What are the current challenges and future directions in ${subject}?`,
-      `Analyze the historical development of ${subject}`,
-      `Compare different methodologies used in ${subject}`,
-      `Evaluate the impact of ${subject} on society`,
-      `What are the ethical considerations in ${subject}?`,
-      `Design a practical application using concepts from ${subject}`,
+      `How does ${subject} affect our daily lives?`,
+      `What are the practical uses of ${subject} in everyday situations?`,
+      `How can understanding ${subject} help solve real-world problems?`,
+      `What are the current trends in ${subject} that impact society?`,
+      `How has ${subject} evolved over time to meet modern needs?`,
+      `What are the benefits of learning ${subject} for personal and professional growth?`,
+      `How does ${subject} interact with technology in our daily routines?`,
+      `What are the common misconceptions about ${subject}?`,
+      `How can ${subject} be applied to improve decision-making?`,
+      `What role does ${subject} play in shaping our future?`,
     ];
   };
 
@@ -280,17 +280,17 @@ function generateMockQuestionPaper(params: {
     const lowerSubject = subject.toLowerCase();
     
     if (lowerSubject.includes('math')) {
-      return `Case Study: A company needs to optimize its production process. The production function is given by P(x) = 2x² + 5x + 10, where x is the number of units produced. ${question || 'Analyze the production function and determine the optimal production level.'}`;
+      return `Case Study: A small business owner wants to optimize their pricing strategy. They sell 100 units per month at $20 each. For every $1 decrease in price, they sell 10 more units. ${question || 'Calculate the optimal price to maximize revenue and explain your reasoning.'}`;
     } else if (lowerSubject.includes('physics')) {
-      return `Case Study: A car manufacturer is designing a new safety system. The car must decelerate from 60 km/h to 0 in 3 seconds. ${question || 'Calculate the required deceleration force and analyze the safety implications.'}`;
+      return `Case Study: A family is planning a road trip. Their car has a fuel efficiency of 25 mpg and the gas tank holds 15 gallons. They need to travel 400 miles. ${question || 'Calculate if they need to stop for gas and determine the most fuel-efficient driving speed.'}`;
     } else if (lowerSubject.includes('chemistry')) {
-      return `Case Study: A pharmaceutical company is developing a new drug. The reaction rate depends on temperature and concentration. ${question || 'Analyze the reaction kinetics and determine optimal conditions.'}`;
+      return `Case Study: A restaurant owner wants to understand food preservation. They notice that food spoils faster in summer than winter. ${question || 'Explain the chemical reasons behind this and suggest practical preservation methods.'}`;
     } else if (lowerSubject.includes('biology')) {
-      return `Case Study: A patient presents with unusual symptoms. Medical tests reveal elevated enzyme levels. ${question || 'Analyze the potential causes and recommend diagnostic procedures.'}`;
+      return `Case Study: A school cafeteria wants to create healthier meal options. Students are complaining about feeling tired after lunch. ${question || 'Analyze the nutritional factors and suggest menu changes that would provide sustained energy.'}`;
     } else if (lowerSubject.includes('computer')) {
-      return `Case Study: A tech startup is building a scalable web application. They need to handle millions of users. ${question || 'Design the system architecture and analyze potential bottlenecks.'}`;
+      return `Case Study: A local library wants to digitize their book collection. They have 10,000 books and limited budget. ${question || 'Design a practical digitization plan considering storage, accessibility, and cost-effectiveness.'}`;
     } else {
-      return `Case Study: ${question || 'Analyze the given scenario and provide recommendations based on the subject matter.'}`;
+      return `Case Study: ${question || 'Analyze this real-world scenario and provide practical solutions based on the subject matter.'}`;
     }
   };
 
@@ -298,84 +298,105 @@ function generateMockQuestionPaper(params: {
     const lowerSubject = subject.toLowerCase();
     
     if (lowerSubject.includes('math')) {
-      return `Problem: Solve the following optimization problem. A farmer has 100 meters of fencing to enclose a rectangular area. ${question || 'Find the dimensions that maximize the area.'}`;
+      return `Problem: You want to save money for a vacation. You can save $200 per month and the vacation costs $2,400. ${question || 'Calculate how many months you need to save and create a savings plan.'}`;
     } else if (lowerSubject.includes('physics')) {
-      return `Problem: A ball is thrown upward with an initial velocity of 20 m/s. ${question || 'Calculate the maximum height reached and the time taken to reach it.'}`;
+      return `Problem: You need to move furniture to a second-floor apartment. The stairs are 3 meters high and you need to lift a 50kg box. ${question || 'Calculate the work required and determine if you can do it safely.'}`;
     } else if (lowerSubject.includes('chemistry')) {
-      return `Problem: In a chemical reaction, 2 moles of A react with 3 moles of B to produce C. ${question || 'Calculate the limiting reactant and the theoretical yield.'}`;
+      return `Problem: You are cooking and need to adjust a recipe. The original recipe calls for 2 cups of flour for 4 servings, but you need to make 6 servings. ${question || 'Calculate the correct amount of flour and explain the ratio.'}`;
     } else if (lowerSubject.includes('biology')) {
-      return `Problem: In a population study, the growth rate follows an exponential model. ${question || 'Calculate the population after 5 years given initial conditions.'}`;
+      return `Problem: Your friend wants to start a fitness routine. They want to lose 5kg in 2 months through exercise. ${question || 'Calculate the daily calorie deficit needed and suggest a realistic exercise plan.'}`;
     } else if (lowerSubject.includes('computer')) {
-      return `Problem: Design an algorithm to find the shortest path in a weighted graph. ${question || 'Explain your approach and analyze its time complexity.'}`;
+      return `Problem: You need to organize your digital photos. You have 1,000 photos taking up 5GB of storage. ${question || 'Calculate storage requirements for different compression options and recommend the best approach.'}`;
     } else {
-      return `Problem: ${question || 'Solve the given problem using appropriate methods and show your work.'}`;
+      return `Problem: ${question || 'Solve this practical problem using appropriate methods and show your work.'}`;
     }
   };
 
   const generateBlankAnswer = (subject: string, question?: string): string => {
     const lowerSubject = subject.toLowerCase();
     
-    // Generate answer based on question content
+    // Generate varied answers based on question content
     if (question) {
       if (question.includes('equation') || question.includes('solve') || question.includes('x')) {
-        return '5';
+        const answers = ['5', '7', '10', '12', '15', '20', '25', '3', '8', '4'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('derivative') || question.includes('rate')) {
-        return '6x + 4';
+        const answers = ['6x + 4', '3x² + 2x', '2x + 5', '5x² - 3', '4x - 7'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('integral') || question.includes('area')) {
-        return 'x³ + 2x²';
+        const answers = ['x³ + 2x²', '2x³ + C', 'x²/2 + 3x', '5x² + C', 'x³/3'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('force') || question.includes('F = ma')) {
-        return '15 N';
+        const answers = ['15 N', '25 N', '30 N', '45 N', '50 N'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('energy') || question.includes('kinetic')) {
-        return '100 J';
+        const answers = ['100 J', '150 J', '200 J', '250 J', '300 J'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('velocity') || question.includes('speed')) {
-        return '10 m/s';
+        const answers = ['10 m/s', '15 m/s', '20 m/s', '25 m/s', '30 m/s'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('molar mass') || question.includes('H₂SO₄')) {
-        return '98 g/mol';
+        const answers = ['98 g/mol', '18 g/mol', '36 g/mol', '58 g/mol', '74 g/mol'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('pH') || question.includes('acid')) {
-        return '5';
+        const answers = ['3', '5', '7', '9', '11'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('cell') || question.includes('powerhouse')) {
-        return 'mitochondria';
+        const answers = ['mitochondria', 'nucleus', 'ribosome', 'golgi apparatus', 'endoplasmic reticulum'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('DNA') || question.includes('genetic')) {
-        return 'deoxyribonucleic acid';
+        const answers = ['deoxyribonucleic acid', 'nucleotide', 'chromosome', 'gene', 'RNA'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('photosynthesis') || question.includes('chloroplast')) {
-        return 'chloroplast';
+        const answers = ['chloroplast', 'chlorophyll', 'glucose', 'oxygen', 'carbon dioxide'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('algorithm') || question.includes('complexity')) {
-        return 'O(n)';
+        const answers = ['O(n)', 'O(n²)', 'O(log n)', 'O(1)', 'O(n log n)'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('database') || question.includes('transaction')) {
-        return 'ACID';
+        const answers = ['ACID', 'SQL', 'NoSQL', 'schema', 'index'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
       if (question.includes('CPU') || question.includes('processor')) {
-        return 'Central Processing Unit';
+        const answers = ['Central Processing Unit', 'ALU', 'register', 'cache', 'clock speed'];
+        return answers[Math.floor(Math.random() * answers.length)];
       }
     }
     
-    // Fallback to subject-specific answers
+    // Fallback to subject-specific varied answers
     if (lowerSubject.includes('math')) {
-      return '5';
+      const answers = ['5', '7', '10', '12', '15', '20', '25', 'π', 'e', '√2'];
+      return answers[Math.floor(Math.random() * answers.length)];
     } else if (lowerSubject.includes('physics')) {
-      return '15 N';
+      const answers = ['15 N', '25 N', '30 N', '45 N', '50 N', '9.8 m/s²', '3 × 10⁸ m/s', '1.6 × 10⁻¹⁹ C'];
+      return answers[Math.floor(Math.random() * answers.length)];
     } else if (lowerSubject.includes('chemistry')) {
-      return '98 g/mol';
+      const answers = ['98 g/mol', '18 g/mol', '36 g/mol', '58 g/mol', '74 g/mol', 'H₂O', 'CO₂', 'NaCl'];
+      return answers[Math.floor(Math.random() * answers.length)];
     } else if (lowerSubject.includes('biology')) {
-      return 'mitochondria';
+      const answers = ['mitochondria', 'nucleus', 'ribosome', 'DNA', 'enzyme', 'cell membrane', 'ATP'];
+      return answers[Math.floor(Math.random() * answers.length)];
     } else if (lowerSubject.includes('computer')) {
-      return 'O(n)';
+      const answers = ['O(n)', 'O(n²)', 'O(log n)', 'CPU', 'RAM', 'algorithm', 'binary'];
+      return answers[Math.floor(Math.random() * answers.length)];
     } else if (lowerSubject.includes('current')) {
-      return 'climate change';
+      const answers = ['climate change', 'AI', 'globalization', 'sustainability', 'digital transformation'];
+      return answers[Math.floor(Math.random() * answers.length)];
     } else {
-      return 'answer';
+      const answers = ['concept', 'principle', 'theory', 'application', 'methodology'];
+      return answers[Math.floor(Math.random() * answers.length)];
     }
   };
 
@@ -482,76 +503,159 @@ function generateMockQuestionPaper(params: {
   const generateMCQOptions = (subject: string, question?: string): string[] => {
     const lowerSubject = subject.toLowerCase();
     
-    // Generate options based on question content
+    // Generate varied options based on question content
     if (question) {
       if (question.includes('equation') || question.includes('solve') || question.includes('x')) {
-        const answers = ['5', '10', '15', '20'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['5', '7', '10', '12'],
+          ['15', '20', '25', '30'],
+          ['3', '4', '5', '6'],
+          ['8', '10', '12', '14'],
+          ['2', '5', '8', '11']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('derivative') || question.includes('integral')) {
-        const answers = ['3x² + 4x', '6x + 4', 'x³ + 2x²', '2x + 1'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['3x² + 4x', '6x + 4', 'x³ + 2x²', '2x + 1'],
+          ['2x + 5', '3x²', '4x - 3', '5x² + 2'],
+          ['x² + 3x', '2x + 1', '3x² - 2', '4x + 5'],
+          ['6x', '3x²', '2x³', 'x + 5']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('area') || question.includes('circle')) {
-        const answers = ['154 cm²', '49π cm²', '38.5 cm²', '196 cm²'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['154 cm²', '49π cm²', '38.5 cm²', '196 cm²'],
+          ['78.5 cm²', '153.94 cm²', '314 cm²', '50.24 cm²'],
+          ['25π cm²', '36π cm²', '49π cm²', '64π cm²']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('force') || question.includes('acceleration')) {
-        const answers = ['15 N', '30 N', '45 N', '60 N'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['15 N', '30 N', '45 N', '60 N'],
+          ['25 N', '50 N', '75 N', '100 N'],
+          ['10 N', '20 N', '30 N', '40 N']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('energy') || question.includes('kinetic')) {
-        const answers = ['50 J', '100 J', '150 J', '200 J'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['50 J', '100 J', '150 J', '200 J'],
+          ['75 J', '125 J', '175 J', '225 J'],
+          ['80 J', '160 J', '240 J', '320 J']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('molar mass') || question.includes('moles')) {
-        const answers = ['18 g/mol', '36 g/mol', '54 g/mol', '98 g/mol'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['18 g/mol', '36 g/mol', '54 g/mol', '98 g/mol'],
+          ['44 g/mol', '58 g/mol', '74 g/mol', '106 g/mol'],
+          ['32 g/mol', '64 g/mol', '80 g/mol', '98 g/mol']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('cell') || question.includes('mitochondria')) {
-        const answers = ['Mitochondria', 'Nucleus', 'Ribosome', 'Golgi apparatus'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['Mitochondria', 'Nucleus', 'Ribosome', 'Golgi apparatus'],
+          ['Chloroplast', 'Vacuole', 'Lysosome', 'Endoplasmic reticulum'],
+          ['Cell membrane', 'Cytoplasm', 'Cytoskeleton', 'Centriole']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
       if (question.includes('complexity') || question.includes('algorithm')) {
-        const answers = ['O(n)', 'O(n²)', 'O(log n)', 'O(1)'];
-        return answers.sort(() => Math.random() - 0.5);
+        const answerSets = [
+          ['O(n)', 'O(n²)', 'O(log n)', 'O(1)'],
+          ['O(n log n)', 'O(2ⁿ)', 'O(n!)', 'O(√n)'],
+          ['O(n)', 'O(n³)', 'O(log² n)', 'O(n/2)']
+        ];
+        const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+        return selectedSet.sort(() => Math.random() - 0.5);
       }
     }
     
-    // Fallback to subject-specific options
+    // Fallback to subject-specific varied options
     if (lowerSubject.includes('math')) {
-      return ['5', '10', '15', '20'];
+      const answerSets = [
+        ['5', '7', '10', '12'],
+        ['15', '20', '25', '30'],
+        ['π', 'e', '√2', '√3'],
+        ['2.5', '3.14', '1.618', '0.5']
+      ];
+      const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+      return selectedSet.sort(() => Math.random() - 0.5);
     } else if (lowerSubject.includes('physics')) {
-      return ['15 N', '30 N', '45 N', '60 N'];
+      const answerSets = [
+        ['15 N', '30 N', '45 N', '60 N'],
+        ['9.8 m/s²', '10 m/s²', '8.9 m/s²', '11 m/s²'],
+        ['50 J', '100 J', '150 J', '200 J'],
+        ['3 × 10⁸ m/s', '2 × 10⁸ m/s', '4 × 10⁸ m/s', '1 × 10⁸ m/s']
+      ];
+      const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+      return selectedSet.sort(() => Math.random() - 0.5);
     } else if (lowerSubject.includes('chemistry')) {
-      return ['18 g/mol', '36 g/mol', '54 g/mol', '98 g/mol'];
+      const answerSets = [
+        ['18 g/mol', '36 g/mol', '54 g/mol', '98 g/mol'],
+        ['H₂O', 'CO₂', 'NaCl', 'HCl'],
+        ['Acid', 'Base', 'Salt', 'Oxide'],
+        ['7', '3', '10', '14']
+      ];
+      const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+      return selectedSet.sort(() => Math.random() - 0.5);
     } else if (lowerSubject.includes('biology')) {
-      return ['Mitochondria', 'Nucleus', 'Ribosome', 'Golgi apparatus'];
+      const answerSets = [
+        ['Mitochondria', 'Nucleus', 'Ribosome', 'Golgi apparatus'],
+        ['DNA', 'RNA', 'ATP', 'Enzyme'],
+        ['Cell membrane', 'Cytoplasm', 'Vacuole', 'Lysosome'],
+        ['Photosynthesis', 'Respiration', 'Digestion', 'Circulation']
+      ];
+      const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+      return selectedSet.sort(() => Math.random() - 0.5);
     } else if (lowerSubject.includes('computer')) {
-      return ['O(n)', 'O(n²)', 'O(log n)', 'O(1)'];
+      const answerSets = [
+        ['O(n)', 'O(n²)', 'O(log n)', 'O(1)'],
+        ['CPU', 'RAM', 'ROM', 'GPU'],
+        ['Binary', 'Hexadecimal', 'Decimal', 'Octal'],
+        ['TCP', 'UDP', 'HTTP', 'FTP']
+      ];
+      const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+      return selectedSet.sort(() => Math.random() - 0.5);
     } else {
-      return ['Option A', 'Option B', 'Option C', 'Option D'];
+      const answerSets = [
+        ['Option A', 'Option B', 'Option C', 'Option D'],
+        ['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4'],
+        ['True', 'False', 'Partially true', 'Cannot determine']
+      ];
+      const selectedSet = answerSets[Math.floor(Math.random() * answerSets.length)];
+      return selectedSet.sort(() => Math.random() - 0.5);
     }
   };
 
-  const sectionAQuestions: Question[] = Array.from({ length: Math.min(questionsPerSection, params.numberOfQuestions) }, (_, i) => {
-    // Cycle through question types if multiple are provided
-    const questionType = params.questionTypes && params.questionTypes.length > 0
-      ? params.questionTypes[i % params.questionTypes.length]
-      : undefined;
-    console.log(`Section A - Question ${i + 1}: Using question type ${questionType} (index ${i % (params.questionTypes?.length || 1)} of ${params.questionTypes?.length || 0})`);
+  // Distribute question types evenly across all questions
+  console.log('Received questionTypes:', params.questionTypes);
+  const allQuestions: Question[] = Array.from({ length: params.numberOfQuestions }, (_, i) => {
+    let questionType: string | undefined;
+    
+    if (params.questionTypes && params.questionTypes.length > 0) {
+      // Distribute types evenly: if 2 types, alternate; if 3 types, cycle through them
+      questionType = params.questionTypes[i % params.questionTypes.length];
+      console.log(`Question ${i + 1}: Using question type "${questionType}" (index ${i % params.questionTypes.length} of ${params.questionTypes.length})`);
+    }
+    
     return generateQuestion(i, difficulties[i % difficulties.length], questionType);
   });
 
-  const remainingQuestions = params.numberOfQuestions - sectionAQuestions.length;
-  const sectionBQuestions: Question[] = Array.from({ length: remainingQuestions }, (_, i) => {
-    // Cycle through question types if multiple are provided
-    const questionType = params.questionTypes && params.questionTypes.length > 0
-      ? params.questionTypes[(sectionAQuestions.length + i) % params.questionTypes.length]
-      : undefined;
-    console.log(`Section B - Question ${sectionAQuestions.length + i + 1}: Using question type ${questionType} (index ${(sectionAQuestions.length + i) % (params.questionTypes?.length || 1)} of ${params.questionTypes?.length || 0})`);
-    return generateQuestion(sectionAQuestions.length + i, difficulties[(i + 1) % difficulties.length], questionType);
-  });
+  // Split questions into sections
+  const sectionAQuestions = allQuestions.slice(0, Math.min(questionsPerSection, params.numberOfQuestions));
+  const sectionBQuestions = allQuestions.slice(Math.min(questionsPerSection, params.numberOfQuestions));
 
   return {
     title: params.title,

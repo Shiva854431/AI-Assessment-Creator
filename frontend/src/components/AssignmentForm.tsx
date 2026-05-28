@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useAssignmentStore } from '@/store/useAssignmentStore';
-import { Loader2, Upload, Plus, X, BookOpen, Calendar, Type, Hash, FileText, Sparkles } from 'lucide-react';
+import { Loader2, Upload, BookOpen, Calendar, Type, Hash, FileText, Sparkles } from 'lucide-react';
 
 export default function AssignmentForm() {
   const { createAssignment, isLoading } = useAssignmentStore();
@@ -11,7 +11,7 @@ export default function AssignmentForm() {
     title: '',
     subject: '',
     dueDate: '',
-    questionTypes: [] as string[],
+    questionType: '',
     numberOfQuestions: 5,
     marksPerQuestion: 10,
     instructions: '',
@@ -20,7 +20,6 @@ export default function AssignmentForm() {
   const [uploadingFile, setUploadingFile] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [newQuestionType, setNewQuestionType] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const questionTypeOptions = [
@@ -40,7 +39,7 @@ export default function AssignmentForm() {
     if (!formData.title.trim()) newErrors.title = 'Title is required';
     if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
     if (!formData.dueDate) newErrors.dueDate = 'Due date is required';
-    if (formData.questionTypes.length === 0) newErrors.questionTypes = 'Please add at least one question type';
+    if (!formData.questionType) newErrors.questionType = 'Please select a question type';
     if (formData.numberOfQuestions < 1) newErrors.numberOfQuestions = 'Must be at least 1';
     if (formData.numberOfQuestions > 50) newErrors.numberOfQuestions = 'Maximum 50 questions allowed';
     if (formData.marksPerQuestion < 1) newErrors.marksPerQuestion = 'Must be at least 1';
@@ -69,6 +68,7 @@ export default function AssignmentForm() {
     try {
       await createAssignment({
         ...formData,
+        questionTypes: formData.questionType ? [formData.questionType] : [],
         dueDate: new Date(formData.dueDate).toISOString(),
       });
 
@@ -77,35 +77,17 @@ export default function AssignmentForm() {
         title: '',
         subject: '',
         dueDate: '',
-        questionTypes: [],
+        questionType: '',
         numberOfQuestions: 5,
         marksPerQuestion: 10,
         instructions: '',
         fileUrl: '',
       });
-      setNewQuestionType('');
       setErrors({});
       console.log('Assignment created successfully');
     } catch (error) {
       console.error('Failed to create assignment:', error);
     }
-  };
-
-  const addQuestionType = () => {
-    if (newQuestionType && !formData.questionTypes.includes(newQuestionType)) {
-      setFormData({
-        ...formData,
-        questionTypes: [...formData.questionTypes, newQuestionType],
-      });
-      setNewQuestionType('');
-    }
-  };
-
-  const removeQuestionType = (type: string) => {
-    setFormData({
-      ...formData,
-      questionTypes: formData.questionTypes.filter((t) => t !== type),
-    });
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,52 +164,25 @@ export default function AssignmentForm() {
         {errors.dueDate && <p className="text-red-400 text-sm">{errors.dueDate}</p>}
       </div>
 
-      {/* Question Types */}
+      {/* Question Type */}
       <div className="space-y-2">
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300">
           <Type className="w-4 h-4 text-yellow-400" />
-          Question Types
+          Question Type
         </label>
-        <div className="flex gap-2">
-          <select
-            value={newQuestionType}
-            onChange={(e) => setNewQuestionType(e.target.value)}
-            className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-white"
-          >
-            <option value="" className="bg-gray-900">Select a question type</option>
-            {questionTypeOptions.map((type) => (
-              <option key={type} value={type} className="bg-gray-900">
-                {type}
-              </option>
-            ))}
-          </select>
-          <button
-            type="button"
-            onClick={addQuestionType}
-            className="px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:from-blue-600 hover:to-purple-600 transition flex items-center gap-2"
-          >
-            <Plus className="w-5 h-5" />
-          </button>
-        </div>
-        
-        <div className="flex flex-wrap gap-2">
-          {formData.questionTypes.map((type) => (
-            <span
-              key={type}
-              className="inline-flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white rounded-full text-sm border border-white/10"
-            >
+        <select
+          value={formData.questionType}
+          onChange={(e) => setFormData({ ...formData, questionType: e.target.value })}
+          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-white"
+        >
+          <option value="" className="bg-gray-900">Select a question type</option>
+          {questionTypeOptions.map((type) => (
+            <option key={type} value={type} className="bg-gray-900">
               {type}
-              <button
-                type="button"
-                onClick={() => removeQuestionType(type)}
-                className="hover:text-red-400 transition"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </span>
+            </option>
           ))}
-        </div>
-        {errors.questionTypes && <p className="text-red-400 text-sm">{errors.questionTypes}</p>}
+        </select>
+        {errors.questionType && <p className="text-red-400 text-sm">{errors.questionType}</p>}
       </div>
 
       {/* Number of Questions */}
