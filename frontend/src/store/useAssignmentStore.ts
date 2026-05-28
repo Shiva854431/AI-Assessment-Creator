@@ -23,18 +23,18 @@ export interface QuestionPaper {
 
 export interface Assignment {
   _id?: string;
-  title: string;
-  subject: string;
-  dueDate: string;
-  questionTypes: string[];
-  numberOfQuestions: number;
-  marksPerQuestion: number;
-  instructions: string;
+  title?: string;
+  subject?: string;
+  dueDate?: string;
+  questionTypes?: string[];
+  numberOfQuestions?: number;
+  marksPerQuestion?: number;
+  instructions?: string;
   fileUrl?: string;
-  status: 'pending' | 'processing' | 'completed' | 'failed';
+  status?: 'pending' | 'processing' | 'completed' | 'failed';
   questionPaper?: QuestionPaper;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface AssignmentState {
@@ -202,7 +202,7 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
       set({ assignments: updatedAssignments });
 
       // Update current assignment if it matches
-      if (currentAssignment?._id === assignmentId) {
+      if (currentAssignment && currentAssignment._id === assignmentId) {
         set({
           currentAssignment: {
             ...currentAssignment,
