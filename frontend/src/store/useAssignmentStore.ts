@@ -22,7 +22,7 @@ export interface QuestionPaper {
 }
 
 export interface Assignment {
-  _id: string;
+  _id?: string;
   title: string;
   subject: string;
   dueDate: string;
