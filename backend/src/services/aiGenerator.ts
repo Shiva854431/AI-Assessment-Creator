@@ -161,10 +161,14 @@ function generateMockQuestionPaper(params: {
     const templateIndex = index % templates.length;
     let question = templates[templateIndex];
     
-    // Check question type
-    const isMCQ = questionType && (questionType.toLowerCase().includes('mcq') || questionType.toLowerCase().includes('multiple choice'));
-    const isFillBlanks = questionType && questionType.toLowerCase().includes('fill') && questionType.toLowerCase().includes('blank');
-    const isMatching = questionType && questionType.toLowerCase().includes('match');
+    // Check question type (case-insensitive)
+    const typeLower = questionType ? questionType.toLowerCase() : '';
+    const isMCQ = typeLower.includes('mcq') || typeLower.includes('multiple choice');
+    const isFillBlanks = typeLower.includes('fill') && typeLower.includes('blank');
+    const isMatching = typeLower.includes('match');
+    const isTrueFalse = typeLower.includes('true') && typeLower.includes('false');
+    
+    console.log(`Generating question ${index + 1} with type: ${questionType}, isMCQ: ${isMCQ}, isFillBlanks: ${isFillBlanks}, isMatching: ${isMatching}`);
     
     // Add difficulty-specific modifiers
     if (difficulty === 'hard') {
@@ -211,6 +215,19 @@ function generateMockQuestionPaper(params: {
         marks: params.marksPerQuestion,
         type: 'matching',
         pairs: pairs,
+      };
+    }
+    
+    if (isTrueFalse) {
+      // Generate true/false question
+      return {
+        id: `q-${index + 1}`,
+        text: question,
+        difficulty: difficulty as 'easy' | 'medium' | 'hard',
+        marks: params.marksPerQuestion,
+        type: 'mcq',
+        options: ['True', 'False'],
+        correctAnswer: 'True',
       };
     }
     
@@ -314,13 +331,19 @@ function generateMockQuestionPaper(params: {
   };
 
   const sectionAQuestions: Question[] = Array.from({ length: Math.min(questionsPerSection, params.numberOfQuestions) }, (_, i) => {
-    const questionType = params.questionTypes && params.questionTypes[i] ? params.questionTypes[i] : params.questionTypes?.[0];
+    // Cycle through question types if multiple are provided
+    const questionType = params.questionTypes && params.questionTypes.length > 0
+      ? params.questionTypes[i % params.questionTypes.length]
+      : undefined;
     return generateQuestion(i, difficulties[i % difficulties.length], questionType);
   });
 
   const remainingQuestions = params.numberOfQuestions - sectionAQuestions.length;
   const sectionBQuestions: Question[] = Array.from({ length: remainingQuestions }, (_, i) => {
-    const questionType = params.questionTypes && params.questionTypes[sectionAQuestions.length + i] ? params.questionTypes[sectionAQuestions.length + i] : params.questionTypes?.[0];
+    // Cycle through question types if multiple are provided
+    const questionType = params.questionTypes && params.questionTypes.length > 0
+      ? params.questionTypes[(sectionAQuestions.length + i) % params.questionTypes.length]
+      : undefined;
     return generateQuestion(sectionAQuestions.length + i, difficulties[(i + 1) % difficulties.length], questionType);
   });
 
