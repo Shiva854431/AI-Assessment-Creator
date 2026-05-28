@@ -12,11 +12,12 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 
-// Allow multiple origins for CORS (localhost:3000 and browser preview port)
+// Allow multiple origins for CORS (localhost:3000, browser preview port, and Render domains)
 const allowedOrigins = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
   'http://127.0.0.1:42865',
+  'https://ai-assessment-creator-5.onrender.com',
   process.env.FRONTEND_URL || 'http://localhost:3000',
 ];
 
