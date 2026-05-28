@@ -539,6 +539,7 @@ function generateMockQuestionPaper(params: {
     const questionType = params.questionTypes && params.questionTypes.length > 0
       ? params.questionTypes[i % params.questionTypes.length]
       : undefined;
+    console.log(`Section A - Question ${i + 1}: Using question type ${questionType} (index ${i % (params.questionTypes?.length || 1)} of ${params.questionTypes?.length || 0})`);
     return generateQuestion(i, difficulties[i % difficulties.length], questionType);
   });
 
@@ -548,6 +549,7 @@ function generateMockQuestionPaper(params: {
     const questionType = params.questionTypes && params.questionTypes.length > 0
       ? params.questionTypes[(sectionAQuestions.length + i) % params.questionTypes.length]
       : undefined;
+    console.log(`Section B - Question ${sectionAQuestions.length + i + 1}: Using question type ${questionType} (index ${(sectionAQuestions.length + i) % (params.questionTypes?.length || 1)} of ${params.questionTypes?.length || 0})`);
     return generateQuestion(sectionAQuestions.length + i, difficulties[(i + 1) % difficulties.length], questionType);
   });
 
