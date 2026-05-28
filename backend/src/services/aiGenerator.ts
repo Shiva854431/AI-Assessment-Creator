@@ -161,14 +161,22 @@ function generateMockQuestionPaper(params: {
     const templateIndex = index % templates.length;
     let question = templates[templateIndex];
     
-    // Check question type (case-insensitive)
-    const typeLower = questionType ? questionType.toLowerCase() : '';
-    const isMCQ = typeLower.includes('mcq') || typeLower.includes('multiple choice');
-    const isFillBlanks = typeLower.includes('fill') && typeLower.includes('blank');
-    const isMatching = typeLower.includes('match');
-    const isTrueFalse = typeLower.includes('true') && typeLower.includes('false');
+    // Map question types to standardized format
+    const typeMap: Record<string, string> = {
+      'multiple choice': 'mcq',
+      'mcq': 'mcq',
+      'fill in the blanks': 'fill-in-the-blanks',
+      'fill-in-the-blanks': 'fill-in-the-blanks',
+      'matching': 'matching',
+      'true/false': 'true-false',
+      'true-false': 'true-false',
+      'short answer': 'short-answer',
+      'essay': 'essay',
+    };
     
-    console.log(`Generating question ${index + 1} with type: ${questionType}, isMCQ: ${isMCQ}, isFillBlanks: ${isFillBlanks}, isMatching: ${isMatching}`);
+    const normalizedType = questionType ? typeMap[questionType.toLowerCase()] || 'short-answer' : 'short-answer';
+    
+    console.log(`Generating question ${index + 1} with type: ${questionType} -> normalized: ${normalizedType}`);
     
     // Add difficulty-specific modifiers
     if (difficulty === 'hard') {
@@ -177,7 +185,7 @@ function generateMockQuestionPaper(params: {
       question += ' Explain your reasoning.';
     }
     
-    if (isMCQ) {
+    if (normalizedType === 'mcq') {
       // Generate MCQ with options
       const options = generateMCQOptions(params.subject);
       return {
@@ -191,7 +199,7 @@ function generateMockQuestionPaper(params: {
       };
     }
     
-    if (isFillBlanks) {
+    if (normalizedType === 'fill-in-the-blanks') {
       // Generate fill-in-the-blanks question
       const blankAnswer = generateBlankAnswer(params.subject);
       const questionWithBlank = question.replace(/^(.+?)(\s+is\s+|\s+are\s+|\s+was\s+|\s+were\s+|\s+has\s+|\s+have\s+|\s+will\s+|\s+can\s+)(.+)$/, '$1$2_____$3');
@@ -205,7 +213,7 @@ function generateMockQuestionPaper(params: {
       };
     }
     
-    if (isMatching) {
+    if (normalizedType === 'matching') {
       // Generate matching question
       const pairs = generateMatchingPairs(params.subject);
       return {
@@ -218,7 +226,7 @@ function generateMockQuestionPaper(params: {
       };
     }
     
-    if (isTrueFalse) {
+    if (normalizedType === 'true-false') {
       // Generate true/false question
       return {
         id: `q-${index + 1}`,
@@ -236,7 +244,7 @@ function generateMockQuestionPaper(params: {
       text: question,
       difficulty: difficulty as 'easy' | 'medium' | 'hard',
       marks: params.marksPerQuestion,
-      type: 'short-answer',
+      type: normalizedType as any,
     };
   };
 
